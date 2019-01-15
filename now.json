@@ -1,10 +1,18 @@
 {
-    "version": 2,
-    "name": "patient-payment",
-    "builds": [
-        { "src": "./backend/*.js", "use": "@now/node" }
-    ],
-    "routes": [
-        { "src": "/api/(.*)", "dest": "/backend/$1" }
-    ]
+  "version": 2,
+  "name": "patient-payment",
+  "builds": [
+    {
+      "src": "./backend/*.js",
+      "use": "@now/node",
+      "env": {
+        "NODE_ENV": "production",
+        "DB_PASS": "@db-password",
+        "DB_USER": "@db-user",
+        "DB_BASE": "@db-base",
+        "DB_HOST": "@db-host"
+      }
+    }
+  ],
+  "routes": [{ "src": "/api/(.*)", "dest": "/backend/$1" }]
 }
