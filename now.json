@@ -1,17 +1,18 @@
 {
   "version": 2,
   "name": "patient-payment",
+  "regions": ["bru1"],
+  "env": {
+    "NODE_ENV": "production",
+    "DB_PASS": "@db-password",
+    "DB_USER": "@db-user",
+    "DB_BASE": "@db-base",
+    "DB_HOST": "@db-host"
+  },
   "builds": [
     {
       "src": "./backend/*.js",
-      "use": "@now/node",
-      "env": {
-        "NODE_ENV": "production",
-        "DB_PASS": "@db-password",
-        "DB_USER": "@db-user",
-        "DB_BASE": "@db-base",
-        "DB_HOST": "@db-host"
-      }
+      "use": "@now/node"
     }
   ],
   "routes": [{ "src": "/api/(.*)", "dest": "/backend/$1" }]
