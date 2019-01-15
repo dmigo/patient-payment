@@ -14,10 +14,7 @@
       "src": "./frontend/package.json",
       "use": "@now/static-build"
     },
-    {
-      "src": "./backend/*.js",
-      "use": "@now/node"
-    }
+    { "src": "/backend/index.js", "use": "@now/node-server" }
   ],
   "routes": [
     { "src": "/providers", "dest": "/backend/index.js" },

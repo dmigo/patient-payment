@@ -5,7 +5,7 @@
 ### Prerequisites
 
 ``` bash
-npm install --save sequelize-cli
+yarn add sequelize-cli -D
 ```
 
 ### Database

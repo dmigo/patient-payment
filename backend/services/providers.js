@@ -20,6 +20,11 @@ const mapToUI = providers =>
   }))
 
 module.exports = ProviderModel => ({
-  find: (state, limit = 10) =>
-    ProviderModel.findAll({ where: { state }, limit }).then(mapToUI)
+  find: (state, limit) =>
+    ProviderModel.findAll({
+      where: {
+        providerState: state
+      },
+      limit
+    }).then(mapToUI)
 })

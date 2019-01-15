@@ -1,0 +1,35 @@
+{
+  "name": "patient-payment",
+  "version": "1.0.0",
+  "description": "Let's try this zeit thing",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon .",
+    "db-init": "sequelize init",
+    "test": "mocha tests/*/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmigo/patient-payment.git"
+  },
+  "author": "dmigo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmigo/patient-payment/issues"
+  },
+  "homepage": "https://github.com/dmigo/patient-payment",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.8.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "sequelize-cli": "^5.4.0",
+    "sequelize-mock": "^0.10.2",
+    "sinon": "^7.2.2"
+  }
+}
