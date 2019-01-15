@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Provider = sequelize.define(
-    'Provider',
+    'provider',
     {
       drgDefinition: DataTypes.STRING,
       providerId: DataTypes.STRING,

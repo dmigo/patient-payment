@@ -1,7 +1,7 @@
 const SequelizeMock = require('sequelize-mock')
 const DBConnectionMock = new SequelizeMock()
 
-const ProviderMock = DBConnectionMock.define('Provider', {
+const ProviderMock = DBConnectionMock.define('provider', {
   drgDefinition: '039 - EXTRACRANIAL PROCEDURES W/O CC/MCC',
   providerId: '10001',
   providerName: 'SOUTHEAST ALABAMA MEDICAL CENTER',
