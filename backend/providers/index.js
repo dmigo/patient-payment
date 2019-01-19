@@ -1,3 +1,6 @@
+const { sequelize, Sequelize } = require('./models')
+const ProviderModel = require('./db/models/provider')(sequelize, Sequelize)
+
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -19,7 +22,7 @@ const mapToUI = providers =>
     'Average Medicare Payments': formatCurrency(p.averageMedicarePayments)
   }))
 
-module.exports = ProviderModel => ({
+module.exports = {
   find: (state, limit) =>
     ProviderModel.findAll({
       where: {
@@ -27,4 +30,4 @@ module.exports = ProviderModel => ({
       },
       limit
     }).then(mapToUI)
-})
+}
