@@ -3,13 +3,11 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const app = express()
 
-const { sequelize, Sequelize } = require('./models')
-const ProviderModel = require('./models/provider')(sequelize, Sequelize)
-const ProvidersSvc = require('./services/providers')(ProviderModel)
+const ProvidersController = require('./controllers/providers')
 
 app.get('/providers', async (req, res) => {
   console.log(req.query)
-  const providers = await ProvidersSvc.find('CA', 20)
+  const providers = await ProvidersController.find('CA', 20)
   res.json(providers)
 })
 
