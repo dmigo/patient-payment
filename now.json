@@ -11,9 +11,16 @@
   },
   "builds": [
     {
+      "src": "./frontend/package.json",
+      "use": "@now/static-build"
+    },
+    {
       "src": "./backend/*.js",
       "use": "@now/node"
     }
   ],
-  "routes": [{ "src": "/api/(.*)", "dest": "/backend/$1" }]
+  "routes": [
+    { "src": "/providers", "dest": "/backend/index.js" },
+    { "src": "/(.*)", "dest": "/frontend/$1" }
+  ]
 }
