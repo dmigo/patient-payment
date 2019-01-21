@@ -3,11 +3,10 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const app = express()
 
-const ProvidersController = require('./controllers/providers')
+const ProvidersController = require('./providers')
 
 app.get('/providers', async (req, res) => {
-  console.log(req.query)
-  const providers = await ProvidersController.find('CA', 20)
+  const providers = await ProvidersController.find(req.query)
   res.json(providers)
 })
 

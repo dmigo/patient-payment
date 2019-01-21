@@ -1,33 +1,62 @@
-const { sequelize, Sequelize } = require('./models')
-const ProviderModel = require('./db/models/provider')(sequelize, Sequelize)
+const { sequelize, Sequelize } = require('../db/models')
+const ProviderModel = require('../db/models/provider')(sequelize, Sequelize)
+const { validateParameters } = require('./validators')
+const { presentProviders } = require('./presenters')
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2
-})
-const formatCurrency = currencyFormatter.format
+const buildMinMaxWhereClause = (min, max) => {
+  const clauses = []
 
-const mapToUI = providers =>
-  providers.map(p => ({
-    'Provider Name': p.providerName,
-    'Provider Street Address': p.providerStreetAddress,
-    'Provider City': p.providerCity,
-    'Provider State': p.providerState,
-    'Provider Zip Code': p.providerZipCode,
-    'Hospital Referral Region Description': p.hospitalReferralRegionDescription,
-    'Total Discharges': p.totalDischarges,
-    'Average Covered Charges': formatCurrency(p.averageCoveredCharges),
-    'Average Total Payments': formatCurrency(p.averageTotalPayments),
-    'Average Medicare Payments': formatCurrency(p.averageMedicarePayments)
-  }))
+  if (min) clauses.push({ [Sequelize.Op.gte]: min })
+  if (max) clauses.push({ [Sequelize.Op.lte]: max })
+
+  return { [Sequelize.Op.and]: clauses }
+}
+
+const buildWhereClause = parameters => {
+  const {
+    max_total_discharges,
+    min_total_discharges,
+    max_average_covered_charges,
+    min_average_covered_charges,
+    max_average_medicare_payments,
+    min_average_medicare_payments,
+    state
+  } = parameters
+
+  const where = {}
+
+  if (state) where.providerState = { [Sequelize.Op.eq]: state }
+
+  if (min_total_discharges || max_total_discharges)
+    where.totalDischarges = buildMinMaxWhereClause(
+      min_total_discharges,
+      max_total_discharges
+    )
+
+  if (min_average_covered_charges || max_average_covered_charges)
+    where.averageCoveredCharges = buildMinMaxWhereClause(
+      min_average_covered_charges,
+      max_average_covered_charges
+    )
+
+  if (min_average_medicare_payments || max_average_medicare_payments)
+    where.averageMedicarePayments = buildMinMaxWhereClause(
+      min_average_medicare_payments,
+      max_average_medicare_payments
+    )
+
+  return where
+}
 
 module.exports = {
-  find: (state, limit) =>
-    ProviderModel.findAll({
-      where: {
-        providerState: state
-      },
-      limit
-    }).then(mapToUI)
+  find: parameters => {
+    const { error, value: validParameters } = validateParameters(parameters)
+    if (error) throw error
+
+    return ProviderModel.findAll({
+      where: buildWhereClause(validParameters),
+      offset: validParameters.offset,
+      limit: validParameters.limit
+    }).then(presentProviders)
+  }
 }

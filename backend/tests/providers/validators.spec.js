@@ -85,6 +85,37 @@ describe('validateParameters', () => {
       expect(result.error).to.be.not.null
     })
   })
+  describe('total_discharges', () => {
+    it('allows positive', () => {
+      const parameters = { max_total_discharges: 102, min_total_discharges: 29 }
+      const result = validators.validateParameters(parameters)
+      expect(result.error).to.be.null
+      expect(result.value.max_total_discharges).to.be.equal(
+        parameters.max_total_discharges
+      )
+      expect(result.value.min_total_discharges).to.be.equal(
+        parameters.min_total_discharges
+      )
+    })
+    it('allows 0', () => {
+      const parameters = { max_total_discharges: 0, min_total_discharges: 0 }
+      const result = validators.validateParameters(parameters)
+      expect(result.error).to.be.null
+      expect(result.value.max_total_discharges).to.be.equal(
+        parameters.max_total_discharges
+      )
+      expect(result.value.min_total_discharges).to.be.equal(
+        parameters.min_total_discharges
+      )
+    })
+    it("doesn't allow negative", () => {
+      let result = validators.validateParameters({ max_total_discharges: -1 })
+      expect(result.error).to.be.not.null
+
+      result = validators.validateParameters({ min_total_discharges: -1 })
+      expect(result.error).to.be.not.null
+    })
+  })
   describe('limit', () => {
     it('allows positive', () => {
       const parameters = { limit: 133 }
@@ -100,8 +131,8 @@ describe('validateParameters', () => {
   })
   it('is able to validate example', () => {
     const parameters = {
-      max_discharges: '$3,321.23',
-      min_discharges: '0',
+      max_total_discharges: '10',
+      min_total_discharges: '0',
       max_average_covered_charges: 9000,
       min_average_covered_charges: '288.191',
       max_average_medicare_payments: '$45,743,243.2',
@@ -112,8 +143,8 @@ describe('validateParameters', () => {
     }
     const { error, value } = validators.validateParameters(parameters)
     expect(error).to.be.null
-    expect(value.max_discharges).to.be.equal(3321.23)
-    expect(value.min_discharges).to.be.equal(0)
+    expect(value.max_total_discharges).to.be.equal(10)
+    expect(value.min_total_discharges).to.be.equal(0)
     expect(value.max_average_covered_charges).to.be.equal(9000)
     expect(value.min_average_covered_charges).to.be.equal(288.19)
     expect(value.max_average_medicare_payments).to.be.equal(45743243.2)
@@ -121,5 +152,9 @@ describe('validateParameters', () => {
     expect(value.state).to.be.equal('CT')
     expect(value.offset).to.be.equal(0)
     expect(value.limit).to.be.equal(10)
+  })
+  it("doesn't throw for an empty object", () => {
+    const { error } = validators.validateParameters({})
+    expect(error).to.be.null
   })
 })

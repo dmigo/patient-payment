@@ -69,8 +69,8 @@ const joiState = joi
   .valid(states)
 
 const schema = joi.object().keys({
-  max_discharges: joiMoney,
-  min_discharges: joiMoney,
+  max_total_discharges: joi.number().min(0),
+  min_total_discharges: joiMoney,
   max_average_covered_charges: joiMoney,
   min_average_covered_charges: joiMoney,
   max_average_medicare_payments: joiMoney,
@@ -94,11 +94,11 @@ const validateParameters = parameters => {
     ...parameters
   }
 
-  if (mapped.min_discharges)
-    mapped.min_discharges = stripMoney(mapped.min_discharges)
+  if (mapped.min_total_discharges)
+    mapped.min_total_discharges = stripMoney(mapped.min_total_discharges)
 
-  if (mapped.max_discharges)
-    mapped.max_discharges = stripMoney(mapped.max_discharges)
+  if (mapped.max_total_discharges)
+    mapped.max_total_discharges = stripMoney(mapped.max_total_discharges)
 
   if (mapped.min_average_covered_charges)
     mapped.min_average_covered_charges = stripMoney(
