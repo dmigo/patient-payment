@@ -1,4 +1,4 @@
-const { sequelize, Sequelize } = require('../db/models')
+const { sequelize, Sequelize } = require('../db/models/index')
 const ProviderModel = require('../db/models/provider')(sequelize, Sequelize)
 const { validateParameters } = require('./validators')
 const { presentProviders } = require('./presenters')
