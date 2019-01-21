@@ -4,7 +4,8 @@
   "description": "Let's try this zeit thing",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon .",
+    "start": "node index.js",
+    "dev": "nodemon .",
     "db-init": "sequelize init",
     "test": "mocha tests/*/*.spec.js"
   },
