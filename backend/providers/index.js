@@ -58,7 +58,5 @@ module.exports = {
       offset: validParameters.offset,
       limit: validParameters.limit
     }).then(presentProviders)
-
-    return Promise.resolve({ a: 'b' })
   }
 }
