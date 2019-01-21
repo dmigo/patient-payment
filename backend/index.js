@@ -3,7 +3,7 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const app = express()
 
-const ProvidersController = require('./providers/index')
+const ProvidersController = require('./providers')
 
 app.get('/providers', async (req, res) => {
   const providers = await ProvidersController.find(req.query)

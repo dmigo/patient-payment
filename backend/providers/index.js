@@ -1,4 +1,4 @@
-const { sequelize, Sequelize } = require('../db/models/index')
+const { sequelize, Sequelize } = require('../db/models')
 const ProviderModel = require('../db/models/provider')(sequelize, Sequelize)
 const { validateParameters } = require('./validators')
 const { presentProviders } = require('./presenters')
@@ -58,5 +58,7 @@ module.exports = {
       offset: validParameters.offset,
       limit: validParameters.limit
     }).then(presentProviders)
+
+    return Promise.resolve({ a: 'b' })
   }
 }
