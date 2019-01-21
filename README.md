@@ -20,11 +20,6 @@ yarn run sequelize model:generate --name Provider --attributes "drgDefinition:st
 yarn run sequelize db:migrate --config config/sequelize.json --env local
 ```
 
-## TODO
-
- [ ] Catch database not available
- [ ] Add linter
-
 ## Hints
 
 ### VS Code tests debugging
