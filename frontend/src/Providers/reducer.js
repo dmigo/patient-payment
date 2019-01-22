@@ -1,7 +1,10 @@
 import {
   GET_PROVIDERS_REQUEST,
   GET_PROVIDERS_SUCCESS,
-  GET_PROVIDERS_FAILURE
+  GET_PROVIDERS_FAILURE,
+  LOAD_MORE_PROVIDERS_REQUEST,
+  LOAD_MORE_PROVIDERS_SUCCESS,
+  LOAD_MORE_PROVIDERS_FAILURE
 } from './actions'
 
 export default function datasets(
@@ -15,7 +18,15 @@ export default function datasets(
 ) {
   switch (action.type) {
     case GET_PROVIDERS_REQUEST:
-      return { ...state, error: null, loading: true }
+      return {
+        ...state,
+        providers: [],
+        parameters: {},
+        error: null,
+        loading: true
+      }
+    case LOAD_MORE_PROVIDERS_REQUEST:
+      return { ...state, loading: true }
     case GET_PROVIDERS_SUCCESS:
       return {
         ...state,
@@ -24,7 +35,16 @@ export default function datasets(
         loading: false,
         error: null
       }
+    case LOAD_MORE_PROVIDERS_SUCCESS:
+      return {
+        ...state,
+        providers: [...state.providers, ...action.payload.providers],
+        parameters: action.payload.parameters,
+        loading: false,
+        error: null
+      }
     case GET_PROVIDERS_FAILURE:
+    case LOAD_MORE_PROVIDERS_FAILURE:
       return { ...state, error: action.payload, loading: false }
     default:
       return state
