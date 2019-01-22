@@ -1,22 +1,4 @@
-import React, { Component } from 'react'
-import 'dress-code/dist/css/dress-code.min.css'
-import './App.css'
-
-import api from './api'
-
-const Menu = () => {
-  return <div className="dc-card">Menu</div>
-}
-
-const Providers = ({ items }) => {
-  return (
-    <div>
-      {items.map((provider, index) => (
-        <Provider key={`provider-${index}`} {...provider} />
-      ))}
-    </div>
-  )
-}
+import React from 'react'
 
 const Provider = ({
   name,
@@ -54,18 +36,4 @@ const Field = ({ label, value }) => (
   </div>
 )
 
-class App extends Component {
-  render() {
-    const providers = api.providrs.find()
-    return (
-      <div className="dc-page">
-        <div className="dc-container">
-          <Menu />
-          <Providers items={providers} />
-        </div>
-      </div>
-    )
-  }
-}
-
-export default App
+export default Provider
