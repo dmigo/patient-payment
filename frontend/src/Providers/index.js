@@ -5,8 +5,7 @@ import { getProviders, loadMoreProviders } from './actions'
 import Provider from './Provider'
 import Loading from './Loading'
 import Error from './Error'
-
-const AMOUNT_OF_PROVIDERS_TO_LOAD = 2
+import { AMOUNT_OF_PROVIDERS_TO_LOAD } from '../constants'
 
 const Empty = () => (
   <div className="dc-card">There is no providers to show.</div>
@@ -21,15 +20,13 @@ const LoadMore = ({ load }) => (
 class Providers extends Component {
   componentDidMount() {
     this.props.getProviders({
-      limit: AMOUNT_OF_PROVIDERS_TO_LOAD,
-      state: 'ca',
-      min_total_discharges: 900
+      limit: AMOUNT_OF_PROVIDERS_TO_LOAD
     })
   }
 
   isLoadMoreVisible() {
-    const { providers, error, loading, parameters } = this.props
-    const totalLoaded = (parameters.offset || 0) + (parameters.limit || 0)
+    const { providers, error, loading, limit, offset } = this.props
+    const totalLoaded = offset + limit
     const providersLoaded = providers && providers.length
 
     return (

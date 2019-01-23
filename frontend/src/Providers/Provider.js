@@ -1,4 +1,5 @@
 import React from 'react'
+import './Provider.css'
 
 const Provider = ({
   name,
@@ -12,7 +13,7 @@ const Provider = ({
   averageTotalPayments,
   averageMedicarePayments
 }) => (
-  <div className="dc-card">
+  <div className="dc-card provider-card">
     <Field label="Provider Name" value={name} />
     <Field label="Provider Street Address" value={address} />
     <Field label="Provider City" value={city} />

@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import 'dress-code/dist/css/dress-code.min.css'
-import './App.css'
+import './index.css'
 import Providers from '../Providers'
-import Menu from '../Menu'
+import Filter from '../Filter'
 
 function App() {
   return (
     <div className="dc-page">
       <div className="dc-container">
-        <Menu />
+        <Filter />
         <Providers />
       </div>
     </div>

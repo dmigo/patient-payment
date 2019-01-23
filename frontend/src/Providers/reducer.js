@@ -10,7 +10,8 @@ import {
 export default function datasets(
   state = {
     providers: [],
-    parameters: {},
+    limit: 0,
+    offset: 0,
     loading: false,
     error: null
   },
@@ -21,7 +22,8 @@ export default function datasets(
       return {
         ...state,
         providers: [],
-        parameters: {},
+        limit: 0,
+        offset: 0,
         error: null,
         loading: true
       }
@@ -31,7 +33,8 @@ export default function datasets(
       return {
         ...state,
         providers: action.payload.providers,
-        parameters: action.payload.parameters,
+        limit: action.payload.limit,
+        offset: action.payload.offset,
         loading: false,
         error: null
       }
@@ -39,7 +42,8 @@ export default function datasets(
       return {
         ...state,
         providers: [...state.providers, ...action.payload.providers],
-        parameters: action.payload.parameters,
+        limit: action.payload.limit,
+        offset: action.payload.offset,
         loading: false,
         error: null
       }
