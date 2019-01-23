@@ -2,6 +2,7 @@ const { sequelize, Sequelize } = require('../db/models')
 const ProviderModel = require('../db/models/provider')(sequelize, Sequelize)
 const { validateParameters } = require('./validators')
 const { presentProviders } = require('./presenters')
+const { QueryParametersValidationError } = require('../errors')
 
 const buildMinMaxWhereClause = (min, max) => {
   const clauses = []
@@ -51,7 +52,10 @@ const buildWhereClause = parameters => {
 module.exports = {
   find: parameters => {
     const { error, value: validParameters } = validateParameters(parameters)
-    if (error) throw error
+    if (error)
+      throw new QueryParametersValidationError(
+        error.details.map(error => error.message)
+      )
 
     return ProviderModel.findAll({
       where: buildWhereClause(validParameters),
