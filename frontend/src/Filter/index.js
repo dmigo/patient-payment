@@ -38,7 +38,7 @@ class Filter extends Component {
             className="dc-input dc-input--in-input-group"
             type="text"
             value={parameters.max_total_discharges}
-            placeholder="999"
+            placeholder="9999"
             onChange={handleChange('max_total_discharges')}
           />
         </div>
