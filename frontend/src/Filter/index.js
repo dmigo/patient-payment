@@ -4,6 +4,32 @@ import { connect } from 'react-redux'
 import './index.css'
 import { search } from './actions'
 
+const MinMax = ({ label, min, max }) => {
+  return (
+    <div>
+      <label className="dc-label">{label}</label>
+      <div className="dc-input-group">
+        <span className="dc-input-addon">From</span>
+        <input
+          className="dc-input dc-input--in-input-group"
+          type="text"
+          value={min.value}
+          placeholder={min.placeholder}
+          onChange={min.onChange}
+        />
+        <span className="dc-input-addon">To</span>
+        <input
+          className="dc-input dc-input--in-input-group"
+          type="text"
+          value={max.value}
+          placeholder={max.placeholder}
+          onChange={max.onChange}
+        />
+      </div>
+    </div>
+  )
+}
+
 class Filter extends Component {
   render() {
     const { parameters, search } = this.props
@@ -14,74 +40,55 @@ class Filter extends Component {
 
     return (
       <div className="dc-card filter-block">
-        <label className="dc-label">State</label>
-        <input
-          className="dc-input dc-input--in-input-group"
-          type="text"
-          value={parameters.state}
-          placeholder="AL"
-          onChange={handleChange('state')}
+        <div>
+          <label className="dc-label">State</label>
+          <input
+            className="dc-input dc-input--in-input-group"
+            type="text"
+            value={parameters.state}
+            placeholder="AL"
+            onChange={handleChange('state')}
+          />
+        </div>
+        <MinMax
+          label="Total Discharges"
+          min={{
+            value: parameters.min_total_discharges,
+            placeholder: 0,
+            onChange: handleChange('min_total_discharges')
+          }}
+          max={{
+            value: parameters.max_total_discharges,
+            placeholder: 9999,
+            onChange: handleChange('max_total_discharges')
+          }}
         />
-
-        <label className="dc-label">Total Discharges</label>
-        <div className="dc-input-group">
-          <span className="dc-input-addon">From</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.min_total_discharges}
-            placeholder="0"
-            onChange={handleChange('min_total_discharges')}
-          />
-          <span className="dc-input-addon">To</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.max_total_discharges}
-            placeholder="9999"
-            onChange={handleChange('max_total_discharges')}
-          />
-        </div>
-
-        <label className="dc-label">Average Covered Charges</label>
-        <div className="dc-input-group">
-          <span className="dc-input-addon">From</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.min_average_covered_charges}
-            placeholder="$0.00"
-            onChange={handleChange('min_average_covered_charges')}
-          />
-          <span className="dc-input-addon">To</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.max_average_covered_charges}
-            placeholder="$9,999,999.99"
-            onChange={handleChange('max_average_covered_charges')}
-          />
-        </div>
-
-        <label className="dc-label">Average Medicare Payments</label>
-        <div className="dc-input-group">
-          <span className="dc-input-addon">From</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.min_average_medicare_payments}
-            placeholder="$0.00"
-            onChange={handleChange('min_average_medicare_payments')}
-          />
-          <span className="dc-input-addon">To</span>
-          <input
-            className="dc-input dc-input--in-input-group"
-            type="text"
-            value={parameters.max_average_medicare_payments}
-            placeholder="$9,999,999.99"
-            onChange={handleChange('max_average_medicare_payments')}
-          />
-        </div>
+        <MinMax
+          label="Average Covered Charges"
+          min={{
+            value: parameters.min_average_covered_charges,
+            placeholder: '$0.00',
+            onChange: handleChange('min_average_covered_charges')
+          }}
+          max={{
+            value: parameters.max_average_covered_charges,
+            placeholder: '$9,999,999.99',
+            onChange: handleChange('max_average_covered_charges')
+          }}
+        />
+        <MinMax
+          label="Average Medicare Payments"
+          min={{
+            value: parameters.min_average_medicare_payments,
+            placeholder: '$0.00',
+            onChange: handleChange('min_average_medicare_payments')
+          }}
+          max={{
+            value: parameters.max_average_medicare_payments,
+            placeholder: '$9,999,999.99',
+            onChange: handleChange('max_average_medicare_payments')
+          }}
+        />
       </div>
     )
   }
