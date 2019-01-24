@@ -49,7 +49,10 @@ export default function datasets(
       }
     case GET_PROVIDERS_FAILURE:
     case LOAD_MORE_PROVIDERS_FAILURE:
-      return { ...state, error: action.payload, loading: false }
+      const message = action.payload.errors
+        ? action.payload.errors.map(err => err.message).join('/n')
+        : action.payload.message
+      return { ...state, error: message, loading: false }
     default:
       return state
   }

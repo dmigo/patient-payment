@@ -115,7 +115,7 @@ describe('loadMoreProvidersSuccess', () => {
 })
 
 describe('getProvidersFailure', () => {
-  const payload = 'error message'
+  const payload = { message: 'error message' }
   const state = {
     providers: [],
     limit: 10,
@@ -139,12 +139,12 @@ describe('getProvidersFailure', () => {
     expect(result.loading).to.be.false
   })
   it('has no errors', () => {
-    expect(result.error).to.be.equal(payload)
+    expect(result.error).to.be.equal(payload.message)
   })
 })
 
 describe('loadMoreProvidersFailure', () => {
-  const payload = 'error message'
+  const payload = { message: 'error message' }
   const state = {
     providers: [],
     limit: 10,
@@ -167,7 +167,7 @@ describe('loadMoreProvidersFailure', () => {
   it('is not loading', () => {
     expect(result.loading).to.be.false
   })
-  it('has no errors', () => {
-    expect(result.error).to.be.equal(payload)
+  it('has error', () => {
+    expect(result.error).to.be.equal(payload.message)
   })
 })
