@@ -67,10 +67,16 @@ export const loadMoreProviders = amount => {
   }
 }
 
-const getProvidersRequest = createAction(GET_PROVIDERS_REQUEST)
-const getProvidersSuccess = createAction(GET_PROVIDERS_SUCCESS)
-const getProvidersFailure = createAction(GET_PROVIDERS_FAILURE)
+export const getProvidersRequest = createAction(GET_PROVIDERS_REQUEST)
+export const getProvidersSuccess = createAction(GET_PROVIDERS_SUCCESS)
+export const getProvidersFailure = createAction(GET_PROVIDERS_FAILURE)
 
-const loadMoreProvidersRequest = createAction(LOAD_MORE_PROVIDERS_REQUEST)
-const loadMoreProvidersSuccess = createAction(LOAD_MORE_PROVIDERS_SUCCESS)
-const loadMoreProvidersFailure = createAction(LOAD_MORE_PROVIDERS_FAILURE)
+export const loadMoreProvidersRequest = createAction(
+  LOAD_MORE_PROVIDERS_REQUEST
+)
+export const loadMoreProvidersSuccess = createAction(
+  LOAD_MORE_PROVIDERS_SUCCESS
+)
+export const loadMoreProvidersFailure = createAction(
+  LOAD_MORE_PROVIDERS_FAILURE
+)

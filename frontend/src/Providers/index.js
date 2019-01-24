@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getProviders, loadMoreProviders } from './actions'
 import Provider from './Provider'
 import Loading from './Loading'
-import Error from './Error'
+import Error from '../Error'
 import { AMOUNT_OF_PROVIDERS_TO_LOAD } from '../constants'
 
 const Empty = () => (
@@ -37,22 +37,21 @@ class Providers extends Component {
   render() {
     const { providers, error, loading, loadMoreProviders } = this.props
 
+    const providersEmpty = !providers || !providers.length
+    const providersList = providers.map((provider, index) => (
+      <Provider key={`provider-${index}`} {...provider} />
+    ))
+    const loadMoreControl = (
+      <LoadMore load={() => loadMoreProviders(AMOUNT_OF_PROVIDERS_TO_LOAD)} />
+    )
+
     return (
       <div>
         {error ? <Error error={error} /> : null}
-        {providers && providers.length ? (
-          providers.map((provider, index) => (
-            <Provider key={`provider-${index}`} {...provider} />
-          ))
-        ) : !loading ? (
-          <Empty />
-        ) : null}
+        {providersEmpty ? null : providersList}
+        {providersEmpty && !loading ? <Empty /> : null}
         {loading ? <Loading /> : null}
-        {this.isLoadMoreVisible() ? (
-          <LoadMore
-            load={() => loadMoreProviders(AMOUNT_OF_PROVIDERS_TO_LOAD)}
-          />
-        ) : null}
+        {this.isLoadMoreVisible() ? loadMoreControl : null}
       </div>
     )
   }
