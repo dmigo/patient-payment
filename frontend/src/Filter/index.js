@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import './index.css'
-import { changeSearchParameter } from './actions'
+import { search } from './actions'
 
 class Filter extends Component {
   render() {
-    const { parameters, changeSearchParameter } = this.props
+    const { parameters, search } = this.props
 
     const handleChange = parameter => event => {
-      changeSearchParameter(parameter, event.target.value)
+      search(parameter, event.target.value)
     }
 
     return (
@@ -88,7 +88,7 @@ class Filter extends Component {
 }
 
 const mapStateToProps = state => ({ parameters: state.filter.parameters })
-const mapDispatchToProps = { changeSearchParameter }
+const mapDispatchToProps = { search }
 export default connect(
   mapStateToProps,
   mapDispatchToProps

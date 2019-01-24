@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Error from '../Error'
+import Provider from './Provider'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Error />, div)
+  ReactDOM.render(<Provider />, div)
   ReactDOM.unmountComponentAtNode(div)
 })
