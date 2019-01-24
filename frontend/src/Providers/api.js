@@ -21,4 +21,9 @@ export default {
     axios
       .get(`/providers`, { params: parameters })
       .then(response => response.data.map(toUIObjects))
+      .catch(error => {
+        throw error.response.data
+          ? error.response.data
+          : { type: 'Error', message: error.message }
+      })
 }

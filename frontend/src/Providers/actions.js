@@ -31,7 +31,7 @@ export const getProviders = parameters => {
         )
       )
       .catch(error => {
-        dispatch(getProvidersFailure(error.message))
+        dispatch(getProvidersFailure(error))
       })
   }
 }
@@ -62,7 +62,7 @@ export const loadMoreProviders = amount => {
         )
       )
       .catch(error => {
-        dispatch(loadMoreProvidersFailure(error.message))
+        dispatch(loadMoreProvidersFailure(error))
       })
   }
 }
