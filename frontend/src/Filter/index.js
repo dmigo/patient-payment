@@ -3,32 +3,7 @@ import { connect } from 'react-redux'
 
 import './index.css'
 import { search } from './actions'
-
-const MinMax = ({ label, min, max }) => {
-  return (
-    <div>
-      <label className="dc-label">{label}</label>
-      <div className="dc-input-group">
-        <span className="dc-input-addon">From</span>
-        <input
-          className="dc-input dc-input--in-input-group"
-          type="text"
-          value={min.value}
-          placeholder={min.placeholder}
-          onChange={min.onChange}
-        />
-        <span className="dc-input-addon">To</span>
-        <input
-          className="dc-input dc-input--in-input-group"
-          type="text"
-          value={max.value}
-          placeholder={max.placeholder}
-          onChange={max.onChange}
-        />
-      </div>
-    </div>
-  )
-}
+import MinMaxInput from './MinMaxInput'
 
 class Filter extends Component {
   render() {
@@ -50,7 +25,7 @@ class Filter extends Component {
             onChange={handleChange('state')}
           />
         </div>
-        <MinMax
+        <MinMaxInput
           label="Total Discharges"
           min={{
             value: parameters.min_total_discharges,
@@ -63,7 +38,7 @@ class Filter extends Component {
             onChange: handleChange('max_total_discharges')
           }}
         />
-        <MinMax
+        <MinMaxInput
           label="Average Covered Charges"
           min={{
             value: parameters.min_average_covered_charges,
@@ -76,7 +51,7 @@ class Filter extends Component {
             onChange: handleChange('max_average_covered_charges')
           }}
         />
-        <MinMax
+        <MinMaxInput
           label="Average Medicare Payments"
           min={{
             value: parameters.min_average_medicare_payments,
