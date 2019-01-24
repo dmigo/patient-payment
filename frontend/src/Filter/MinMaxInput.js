@@ -2,7 +2,9 @@ import React from 'react'
 import MediaQuery from 'react-responsive'
 
 const MinMaxInput = ({ label, min, max }) => {
-  const minLabel = <span className="dc-input-addon">From</span>
+  const minLabel = (
+    <span className="dc-input-addon filter-input-label">From</span>
+  )
   const minInput = (
     <input
       className="dc-input dc-input--in-input-group"
@@ -12,7 +14,7 @@ const MinMaxInput = ({ label, min, max }) => {
       onChange={min.onChange}
     />
   )
-  const maxLabel = <span className="dc-input-addon">To</span>
+  const maxLabel = <span className="dc-input-addon filter-input-label">To</span>
   const maxInput = (
     <input
       className="dc-input dc-input--in-input-group"

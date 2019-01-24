@@ -6,4 +6,8 @@
   input {
     width: 100%;
   }
+
+  .filter-input-label {
+    width: 7rem;
+  }
 }
