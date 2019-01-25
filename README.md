@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is an example of an application, running on Node.js, React/Redux, and PostgreSQL. [zeit](https://zeit.co) is used for deployment.
+This project is an example of an application, running on Node.js/Express, React/Redux, and PostgreSQL. [zeit](https://zeit.co) is used for deployment.
 The demo can be found [here](https://patient-payment-jrj2u9mui.now.sh/).
 
 ## Deployment
@@ -11,6 +11,27 @@ The project is being deployed using [zeit](https://zeit.co). There is a continou
 It is also possible to deploy from a local machine, though it is not recommended. To see how to do so please refer the documentaion of [now-cli](https://github.com/zeit/now-cli).
 
 ## Frontend
+
+The frontend application is implemented using React/Redux.
+The initial intention was to try just bare React with [hooks](https://reactjs.org/docs/hooks-intro.html) if possible, but unfortunately as of now hooks are only available in an alfa release of React, which would be too much for the current project.
+[Create React App](https://github.com/facebook/create-react-app) is used to kickstart the project. `eject` can be used later once the application grows.
+
+### Local development
+
+#### To run a dev instance locally
+
+1. Provide value to `baseUri` variable in the [/frontend/Providers/api.js](/frontend/Providers/api.js) to connect to the backend
+2. Run `$ yarn dev` on comman inside of the `frontend` directory
+3. Make sure you use [Moesif CORS extension](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) or similar to overcome CORS problems.
+4. Go to http://localhost:3000
+
+#### To run tests
+
+Execute:
+``` bash
+$ cd frontend
+$ yarn test
+```
 
 ## Backend
 
@@ -25,10 +46,11 @@ The choice of express was motivated mostly by the fact that zeit.co lambdas are 
 1. Setup local database or connect to test database in the cloud
 2. Provide DB [configuration](/backend/config/index.js)
 3. Run `$ yarn dev` on comman inside of the `backend` directory
+4. http://localhost:3000 is available for querying e.g. `curl 'http://localhost:3000/providers?&state=LA&limit=20'`
 
 #### To run tests
 
-Execute 
+Execute:
 ``` bash
 $ cd backend
 $ yarn test
@@ -127,7 +149,6 @@ Command used to create the first migration:
 ``` bash
 $ yarn run sequelize model:generate --name Provider --attributes "drgDefinition:string,providerId:string,providerName:string,providerStreetAddress:string,providerCity:string,providerState:string,providerZipCode:string,hospitalReferralRegionDescription:string,totalDischarges:integer,averageCoveredCharges:decimal,averageTotalPayments:decimal,averageMedicarePayments:decimal"
 ```
-
 
 ## Further developments
 

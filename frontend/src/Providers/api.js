@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const baseUri = ''
+
 const toUIObjects = item => {
   return {
     name: item['Provider Name'],
@@ -19,7 +21,9 @@ const toUIObjects = item => {
 export default {
   find: parameters =>
     axios
-      .get(`/providers`, { params: parameters })
+      .get(`${baseUri}/providers`, {
+        params: parameters
+      })
       .then(response => response.data.map(toUIObjects))
       .catch(error => {
         throw error.response.data
