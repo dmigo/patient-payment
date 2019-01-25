@@ -3,7 +3,7 @@
 ## Description
 
 This project is an example of an application, running on Node.js/Express, React/Redux, and PostgreSQL. [zeit](https://zeit.co) is used for deployment.
-The demo can be found [here](https://patient-payment-jrj2u9mui.now.sh/).
+The demo can be found here https://patient-payment-d5a0ibv91.now.sh/
 
 ## Deployment
 
@@ -21,15 +21,23 @@ The initial intention was to try just bare React with [hooks](https://reactjs.or
 #### To run a dev instance locally
 
 1. Provide value to `baseUri` variable in the [/frontend/Providers/api.js](/frontend/Providers/api.js) to connect to the backend
-2. Run `$ yarn dev` on comman inside of the `frontend` directory
-3. Make sure you use [Moesif CORS extension](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) or similar to overcome CORS problems.
-4. Go to http://localhost:3000
+2. Make sure you use [Moesif CORS extension](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) or similar to overcome CORS problems.
+3. Execute:
+
+``` bash
+$ cd frontend
+$ yarn install
+$ yarn dev
+```
+
+The UI is now available on  http://localhost:3000
 
 #### To run tests
 
 Execute:
 ``` bash
 $ cd frontend
+$ yarn install
 $ yarn test
 ```
 
@@ -45,14 +53,22 @@ The choice of express was motivated mostly by the fact that zeit.co lambdas are 
 
 1. Setup local database or connect to test database in the cloud
 2. Provide DB [configuration](/backend/config/index.js)
-3. Run `$ yarn dev` on comman inside of the `backend` directory
-4. http://localhost:3000 is available for querying e.g. `curl 'http://localhost:3000/providers?&state=LA&limit=20'`
+3. To run server execute:
+
+```bash
+$ cd backend
+$ yarn install
+$ yarn dev
+```
+
+Now http://localhost:3000 is available for querying e.g. `$ curl 'http://localhost:3000/providers?&state=LA&limit=20'`
 
 #### To run tests
 
 Execute:
 ``` bash
 $ cd backend
+$ yarn install
 $ yarn test
 ```
 
