@@ -8,7 +8,7 @@ The demo can be found here https://patient-payment.now.sh/
 ## Deployment
 
 The project is being deployed using [zeit](https://zeit.co). There is a continous deployment hook configured for the current repository, so that every new commit/PR is being automatically deployed.
-It is also possible to deploy from a local machine, though it is not recommended. To see how to do so please refer the documentaion of [now-cli](https://github.com/zeit/now-cli).
+It is also possible to deploy from a local machine, though it is not recommended. To see how to do so please refer the documentaion of [now-cli](https://github.com/zeit/now-cli).  
 To switch the traffic run `$ now alias https://patient-payment-<DEPLOYMENT_ID>.now.sh/ https://patient-payment.now.sh/`
 
 ## Frontend
