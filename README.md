@@ -152,4 +152,10 @@ $ yarn run sequelize model:generate --name Provider --attributes "drgDefinition:
 
 ## Further developments
 
-TBD
+This project can be improved in many possible ways. The ideas are going to be collected in the [Issues](https://github.com/dmigo/patient-payment/issues) of the current repository.
+Among the most urgent ones I see:
+
+- Max size for the API return values. [#16](https://github.com/dmigo/patient-payment/issues/16)
+- Docker image for the database + a makefile to start database, ui and api locally all at once. [#11](https://github.com/dmigo/patient-payment/issues/11)
+- Improve the UI layout. [#21](https://github.com/dmigo/patient-payment/issues/21)
+- Configure an alias for the deployment. [20](https://github.com/dmigo/patient-payment/issues/20)
